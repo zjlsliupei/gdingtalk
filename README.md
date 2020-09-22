@@ -1,0 +1,2 @@
+# gdingtalk
+dingtalk for glang
