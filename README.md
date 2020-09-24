@@ -22,7 +22,7 @@ req.SetMethod("Get")
 res := c.Execute(req)
 res.IsSuccess() // false
 res.GetBodyData("errcode").Int() // 100000
-res.GetError()) // 不合法的access_token
+res.GetError() // 不合法的access_token
 ```
 
 ## 通讯录模块
