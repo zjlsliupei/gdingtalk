@@ -11,18 +11,22 @@ type User struct {
 	AccessToken string
 }
 
-func (u *User) GetAllUsers() []gjson.Result {
+func NewUser(accessToken string) User {
+	return User{AccessToken: accessToken}
+}
+
+func (u *User) GetAllUsers() ([]gjson.Result, error) {
 	// deptId=1,为全公司
 	return u.GetUsersByDeptId(1)
 }
 
 // GetUsersByDeptId 获取部门下用户
-func (u *User) GetUsersByDeptId(deptId int64) []gjson.Result {
+func (u *User) GetUsersByDeptId(deptId int64) ([]gjson.Result, error) {
 	department := Department{AccessToken: u.AccessToken}
 	deps, err := department.GetDepartments(deptId)
 	var users []gjson.Result
 	if err != nil {
-		return users
+		return users, err
 	}
 	for _, v := range deps {
 		userIds := u.GetUserIdByDeptId(v.Get("id").Int())
@@ -45,7 +49,7 @@ func (u *User) GetUsersByDeptId(deptId int64) []gjson.Result {
 			}
 		}
 	}
-	return users
+	return users, nil
 }
 
 // GetUserIdByDeptId 根据部门获取user_ids

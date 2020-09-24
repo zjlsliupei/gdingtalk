@@ -24,3 +24,14 @@ res.IsSuccess() // false
 res.GetBodyData("errcode").Int() // 100000
 res.GetError()) // 不合法的access_token
 ```
+
+## 通讯录模块
+### 获取企业下所有用户
+```go
+import (
+ "github.com/zjlsliupei/gdingtalk"
+)
+
+u := gdingtalk.NewUser()
+users, err := u.GetAllUsers()
+```

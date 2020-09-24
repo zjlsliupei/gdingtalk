@@ -3,8 +3,19 @@ package request
 import (
 	"log"
 	"net/url"
+	"os"
 	"testing"
 )
+
+var (
+	appKey    string
+	appSecret string
+)
+
+func init() {
+	appKey = os.Getenv("TEST_APPKEY")
+	appSecret = os.Getenv("TEST_APPSECRET")
+}
 
 func TestGet(t *testing.T) {
 	c := NewClient()
@@ -12,8 +23,8 @@ func TestGet(t *testing.T) {
 	req.SetPath("/gettoken")
 	req.SetMethod("Get")
 	param := url.Values{}
-	param.Add("appkey", "dingwlgogldfur1gw2ma")
-	param.Add("appsecret", "f6TqiRiOy7QKmyAemBmlUjOtbSe2QY0BuwGb_P-9Lf9lt1OiokQf9uuUGan2H80Q")
+	param.Add("appkey", appKey)
+	param.Add("appsecret", appSecret)
 	req.SetQueryParam(param)
 	res := c.Execute(req)
 	log.Println(res.IsSuccess(), res.GetBodyData())

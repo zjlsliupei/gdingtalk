@@ -6,6 +6,6 @@ import (
 )
 
 func TestGetAllUsers(t *testing.T) {
-	user := User{AccessToken: "2530c6e4f7f93d44a9495ace12c80d7c"}
+	user := NewUser("c11951e3b80f3ab2a9ab7929dc170f5e")
 	fmt.Println(user.GetAllUsers())
 }
