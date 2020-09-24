@@ -8,8 +8,8 @@ go get github.com/zjlsliupei/gdingtalk
 
 ## 快速开始
 ```go
-import (
- "github.com/zjlsliupei/gdingtalk"
+import (    
+    "github.com/zjlsliupei/gdingtalk"
 )
 
 
@@ -29,9 +29,10 @@ res.GetError()) // 不合法的access_token
 ### 获取企业下所有用户
 ```go
 import (
- "github.com/zjlsliupei/gdingtalk"
+    "github.com/zjlsliupei/gdingtalk"
 )
 
-u := gdingtalk.NewUser()
+accessToken := "xxxxxx"
+u := gdingtalk.NewUser(accessToken)
 users, err := u.GetAllUsers()
 ```
